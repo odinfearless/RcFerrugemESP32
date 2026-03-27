@@ -1,15 +1,13 @@
 #include "Arduino.h"
 #include "Motor.h"
 
-#define PWM_FREQ 1000
+#define PWM_FREQ 490
 #define PWM_RESOLUTION 8
-static int nextChannel = 0; // garante canais únicos
-int channel = 0;
 
-Motor::Motor(unsigned int pinA, unsigned int pinB, unsigned int pinPwm, unsigned int maxLimitPwm, unsigned int pwmDeadZone)
-    : pinA(pinA), pinB(pinB), pinPwm(pinPwm), maxLimitPwm(maxLimitPwm), pwmDeadZone(pwmDeadZone)
+Motor::Motor(unsigned int pinA, unsigned int pinB, unsigned int pinPwm, unsigned int maxLimitPwm, unsigned int pwmDeadZone, unsigned int pwmChannel)
+    : pinA(pinA), pinB(pinB), pinPwm(pinPwm), maxLimitPwm(maxLimitPwm), pwmDeadZone(pwmDeadZone), pwmChannel(pwmChannel)
 {
-    channel = nextChannel++; // cada motor pega um canal diferente
+  
 }
 void Motor::begin()
 {
@@ -17,9 +15,8 @@ void Motor::begin()
     pinMode(pinB, OUTPUT);
     pinMode(pinPwm, OUTPUT);
 
-    ledcSetup(channel, PWM_FREQ, PWM_RESOLUTION);
-    ledcAttachPin(pinPwm, channel);
-
+    ledcSetup(pwmChannel, PWM_FREQ, PWM_RESOLUTION);
+    ledcAttachPin(pinPwm, pwmChannel);  
     forward();
 }
 void Motor::forward()
@@ -36,7 +33,7 @@ void Motor::backward()
 void Motor::setValue(int val)
 {
     val = val < pwmDeadZone ? 0 : constrain(val, pwmDeadZone, maxLimitPwm);
-    ledcWrite(channel, val);
+    ledcWrite(pwmChannel, val);
 }
 unsigned int Motor::getPinA()
 {

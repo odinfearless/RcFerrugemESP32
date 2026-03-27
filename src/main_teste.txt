@@ -1,0 +1,55 @@
+#include <Wire.h>
+#include "hardware/Motor/Motor.h"
+#include "hardware/SonarSensor/SonarSensor.h"
+#include <Arduino.h>
+#include <WiFi.h>
+
+void setup()
+{
+  Serial.begin(115200);
+  WiFi.disconnect(true); // desconecta e limpa config
+  WiFi.mode(WIFI_OFF);   // desliga rádio Wi-Fi
+  btStop();
+
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+
+  pinMode(9, OUTPUT);
+  pinMode(10, INPUT);
+  pinMode(11, INPUT);
+
+  ledcSetup(0, 490, 8);
+  ledcAttachPin(5, 0);
+}
+
+void loop()
+{
+  /*
+    digitalWrite(9, LOW);
+    delayMicroseconds(2);
+
+    digitalWrite(9, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(9, LOW);
+
+    long duration = pulseIn(10, HIGH, 30000);
+
+    long dura = duration * 0.034 / 2;
+    Serial.println(dura);
+
+    digitalWrite(6, HIGH);
+    digitalWrite(7, LOW);
+    ledcWrite(0, map(0, 0, 20,0,255));
+  */
+
+  int pot = analogRead(11);
+  int pwm = map(pot, 0, 4095, 0, 255);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, LOW);
+  ledcWrite(0, pwm);
+
+  Serial.println(pwm);
+
+  delay(20);
+}
