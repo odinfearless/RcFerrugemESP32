@@ -41,15 +41,15 @@ void loop()
     digitalWrite(6, HIGH);
     digitalWrite(7, LOW);
     ledcWrite(0, map(0, 0, 20,0,255));
-  */
+  
 
   int pot = analogRead(11);
   int pwm = map(pot, 0, 4095, 0, 255);
   digitalWrite(6, HIGH);
   digitalWrite(7, LOW);
-  ledcWrite(0, pwm);
+  ledcWrite(0, pwm);*/
 
-  Serial.println(pwm);
+  Serial.println("Olaaa");
 
-  delay(20);
+  delay(1000);
 }

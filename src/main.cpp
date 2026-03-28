@@ -5,27 +5,27 @@
 #include <WiFi.h>
 
 // ================== CONFIG MOTORES ==================
-const unsigned int MOTOR_1_A = 4;
-const unsigned int MOTOR_1_B = 5;
+const unsigned int MOTOR_1_A = 10;
+const unsigned int MOTOR_1_B = 11;
 
-const unsigned int MOTOR_2_A = 6;
-const unsigned int MOTOR_2_B = 7;
+const unsigned int MOTOR_2_A = 12;
+const unsigned int MOTOR_2_B = 13;
 
 const unsigned int MOTOR_PWM_1 = 8;
 const unsigned int MOTOR_PWM_2 = 9;
 
 // ================== CONFIG SENSORES ==================
-const unsigned int SENSOR_TrigPin_FL = 10;
-const unsigned int SENSOR_EchoPin_FL = 11;
+const unsigned int SENSOR_TrigPin_FL = 4;
+const unsigned int SENSOR_EchoPin_FL = 5;
 
-const unsigned int SENSOR_TrigPin_FR = 12;
-const unsigned int SENSOR_EchoPin_FR = 13;
+const unsigned int SENSOR_TrigPin_FR = 6;
+const unsigned int SENSOR_EchoPin_FR = 7;
 
-const unsigned int SENSOR_TrigPin_BL = 14;
-const unsigned int SENSOR_EchoPin_BL = 15;
+const unsigned int SENSOR_TrigPin_BL = 15;
+const unsigned int SENSOR_EchoPin_BL = 16;
 
-const unsigned int SENSOR_TrigPin_BR = 16;
-const unsigned int SENSOR_EchoPin_BR = 17;
+const unsigned int SENSOR_TrigPin_BR = 17;
+const unsigned int SENSOR_EchoPin_BR = 18;
 
 const unsigned int deadZonePwm = 120;
 const unsigned int maxLimitPwm = 255;
@@ -36,14 +36,14 @@ const unsigned int AnalogMaxValue = 4095;
 
 // 1 - POT
 int distanceDetection = 50;
-const unsigned int PotDistancePin = 18; // ADC estável
+const unsigned int PotDistancePin = 1; 
 const unsigned int minLimitDistance = 5;
 const unsigned int maxLimitDistance = 80;
 unsigned long potLeftlastMillis = 0;
 
 // 2 - POT
 int currentMaxLimitPwm = 0;
-const unsigned int PotPwmPin = 18; // ADC estável
+const unsigned int PotPwmPin = 2; 
 unsigned long potRightlastMillis = 0;
 
 // ==================== Motores ========================
