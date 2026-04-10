@@ -15,23 +15,17 @@ const unsigned int MOTOR_PWM_1 = 8;
 const unsigned int MOTOR_PWM_2 = 9;
 
 // ================== CONFIG SENSORES ==================
-const unsigned int SENSOR_TrigPin_FL = 35;
-const unsigned int SENSOR_EchoPin_FL = 36;
+const unsigned int SENSOR_TrigPin_FL = 15;
+const unsigned int SENSOR_EchoPin_FL = 16;
 
-const unsigned int SENSOR_TrigPin_FR = 6;
-const unsigned int SENSOR_EchoPin_FR = 7;
+const unsigned int SENSOR_TrigPin_FR = 4;
+const unsigned int SENSOR_EchoPin_FR = 5;
 
-const unsigned int SENSOR_TrigPin_BL = 15;
-const unsigned int SENSOR_EchoPin_BL = 16;
+const unsigned int SENSOR_TrigPin_BL = 35;
+const unsigned int SENSOR_EchoPin_BL = 36;
 
-const unsigned int SENSOR_TrigPin_BR = 17;
-const unsigned int SENSOR_EchoPin_BR = 18;
-
-const unsigned int SENSOR_TrigPin_SL = 35;
-const unsigned int SENSOR_EchoPin_SL = 36;
-
-const unsigned int SENSOR_TrigPin_SR = 37;
-const unsigned int SENSOR_EchoPin_SR = 38;
+const unsigned int SENSOR_TrigPin_BR = 37;
+const unsigned int SENSOR_EchoPin_BR = 38;
 
 const unsigned int deadZonePwm = 120;
 const unsigned int maxLimitPwm = 220;
@@ -59,9 +53,6 @@ SonarSensor Front_Sensor_FR(SENSOR_TrigPin_FR, SENSOR_EchoPin_FR);
 
 SonarSensor Front_Sensor_BL(SENSOR_TrigPin_BL, SENSOR_EchoPin_BL);
 SonarSensor Front_Sensor_BR(SENSOR_TrigPin_BR, SENSOR_EchoPin_BR);
-
-SonarSensor Side_Sensor_L(SENSOR_TrigPin_SL, SENSOR_EchoPin_SL);
-SonarSensor Side_Sensor_R(SENSOR_TrigPin_SR, SENSOR_EchoPin_SR);
 
 // ====================== Variáveis =====================
 volatile bool isTurn = false;
@@ -278,6 +269,7 @@ void taskCommandsLoop(void *pvParameters)
 }
 
 // ===================== SETUP =======================
+
 void setup()
 {
   Serial.begin(115200);
@@ -286,7 +278,6 @@ void setup()
   WiFi.mode(WIFI_OFF);
   btStop();
 
-  /*
   pinMode(Starter_Pin, INPUT_PULLUP);
 
   Front_Sensor_FL.begin();
@@ -300,12 +291,10 @@ void setup()
   xTaskCreatePinnedToCore(taskForwardLoop, "Forward", 4096, NULL, 2, &taskForward, 0);
   xTaskCreatePinnedToCore(taskBackwardLoop, "Backward", 4096, NULL, 1, &taskBackward, 1);
   xTaskCreatePinnedToCore(taskCommandsLoop, "Commands", 2048, NULL, 1, &taskCommands, 1);
-  xTaskCreatePinnedToCore(taskPotsLoop, "Pots", 2048, NULL, 1, &taskPots, 1);
-  */
+
+  // xTaskCreatePinnedToCore(taskPotsLoop, "Pots", 2048, NULL, 1, &taskPots, 1);
 }
 
 void loop()
 {
-
-  
 }
