@@ -28,7 +28,7 @@ const unsigned int SENSOR_TrigPin_BR = 37;
 const unsigned int SENSOR_EchoPin_BR = 38;
 
 const unsigned int deadZonePwm = 120;
-const unsigned int maxLimitPwm = 220;
+const unsigned int maxLimitPwm = 250;
 
 // ================== CONFIG POTs  ==================
 const unsigned int PotDistancePin = 3;
@@ -278,7 +278,7 @@ void setup()
   WiFi.mode(WIFI_OFF);
   btStop();
 
-  pinMode(Starter_Pin, INPUT_PULLUP);
+   pinMode(Starter_Pin, INPUT_PULLUP);
 
   Front_Sensor_FL.begin();
   Front_Sensor_FR.begin();
@@ -291,8 +291,8 @@ void setup()
   xTaskCreatePinnedToCore(taskForwardLoop, "Forward", 4096, NULL, 2, &taskForward, 0);
   xTaskCreatePinnedToCore(taskBackwardLoop, "Backward", 4096, NULL, 1, &taskBackward, 1);
   xTaskCreatePinnedToCore(taskCommandsLoop, "Commands", 2048, NULL, 1, &taskCommands, 1);
-
   // xTaskCreatePinnedToCore(taskPotsLoop, "Pots", 2048, NULL, 1, &taskPots, 1);
+   
 }
 
 void loop()
