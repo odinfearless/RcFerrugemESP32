@@ -38,7 +38,7 @@ const unsigned int PotPwmPin = 5;
 const unsigned int releaseTimePots = 1000;
 const unsigned int AnalogMaxValue = 4095;
 const unsigned int minLimitDistance = 3;
-const unsigned int maxLimitDistance = 40;
+const unsigned int maxLimitDistance = 30;
 
 //==================== Starter ==================
 const unsigned int Starter_Pin = 1;
@@ -278,7 +278,7 @@ void setup()
   WiFi.mode(WIFI_OFF);
   btStop();
 
-   pinMode(Starter_Pin, INPUT_PULLUP);
+  pinMode(Starter_Pin, INPUT_PULLUP);
 
   Front_Sensor_FL.begin();
   Front_Sensor_FR.begin();
@@ -292,7 +292,6 @@ void setup()
   xTaskCreatePinnedToCore(taskBackwardLoop, "Backward", 4096, NULL, 1, &taskBackward, 1);
   xTaskCreatePinnedToCore(taskCommandsLoop, "Commands", 2048, NULL, 1, &taskCommands, 1);
   // xTaskCreatePinnedToCore(taskPotsLoop, "Pots", 2048, NULL, 1, &taskPots, 1);
-   
 }
 
 void loop()
