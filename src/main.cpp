@@ -38,7 +38,7 @@ const unsigned int PotPwmPin = 5;
 const unsigned int releaseTimePots = 1000;
 const unsigned int AnalogMaxValue = 4095;
 const unsigned int minLimitDistance = 3;
-const unsigned int maxLimitDistance = 30;
+const unsigned int maxLimitDistance = 35;
 
 //==================== Starter ==================
 const unsigned int Starter_Pin = 1;
